@@ -27,7 +27,7 @@ def status():
 def ask(q:Ask):
     if not DB.exists():
         return {"answer":"La biblioteca está preparada, pero todavía no se han incorporado documentos oficiales verificables. No inventaré artículos ni funciones.","citations":[]}
-    terms=list(dict.fromkeys(re.findall(r"[^\\W_]+",normalize(q.question))))
+    terms=list(dict.fromkeys(re.findall(r"[a-z0-9]+",normalize(q.question))))
     stop={"que","cual","cuales","las","los","del","una","para","como","son","por","con","sobre","segun","de","la","el","en","y","un","se","me","sus"}
     terms=[t for t in terms if t not in stop and len(t)>1]
     if not terms:return {"answer":"Escribe una palabra o pregunta concreta.","citations":[]}
